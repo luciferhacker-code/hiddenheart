@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>About Her - Hidden Heart</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<body>
+  <div class="quiz-container">
+    <h1>Quiz: How Well Do You Know Me?</h1>
+    <div id="quiz-question" class="quiz-question"></div>
+    <div id="quiz-options" class="quiz-options"></div>
+    <div id="quiz-result" class="quiz-result"></div>
+  </div>
+
+  <script>
+    const quizData = [
+      {
+        question: "What color are her eyes?",
+        options: ["Blue", "Green", "Brown", "Hazel"],
+        answer: "Brown"
+      },
+      {
+        question: "What’s her best performance skill?",
+        options: ["Singing", "Dancing", "Acting", "Painting"],
+        answer: "Dancing"
+      },
+      {
+        question: "When is her birthday?",
+        options: ["Jan 5", "Feb 10", "Aug 23", "Dec 30"],
+        answer: "Feb 10"
+      },
+      {
+        question: "What’s her cute nickname?",
+        options: ["Monu", "Babe", "Sweetie", "Honey"],
+        answer: "Monu"
+      },
+      {
+        question: "What’s one thing I like most about her?",
+        options: ["Her Smile", "Her Laugh", "Her Kindness", "Her Eyes"],
+        answer: "Her Eyes"
+      }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    const questionEl = document.getElementById('quiz-question');
+    const optionsEl = document.getElementById('quiz-options');
+    const resultEl = document.getElementById('quiz-result');
+
+    function loadQuestion() {
+      resultEl.textContent = "";
+      const currentQuiz = quizData[current];
+      questionEl.textContent = currentQuiz.question;
+      optionsEl.innerHTML = "";
+
+      currentQuiz.options.forEach(option => {
+        const button = document.createElement("button");
+        button.textContent = option;
+        button.onclick = () => selectOption(button, currentQuiz.answer);
+        optionsEl.appendChild(button);
+      });
+    }
+
+    function selectOption(button, correctAnswer) {
+      const buttons = optionsEl.querySelectorAll("button");
+      buttons.forEach(btn => btn.disabled = true);
+
+      if (button.textContent === correctAnswer) {
+        button.classList.add("correct");
+        score++;
+        resultEl.textContent = "Correct! 🎉";
+      } else {
+        button.classList.add("wrong");
+        resultEl.textContent = "Oops! Try again.";
+      }
+
+      setTimeout(() => {
+        current++;
+        if (current < quizData.length) {
+          loadQuestion();
+        } else {
+          showFinalResult();
+        }
+      }, 1500);
+    }
+
+    function showFinalResult() {
+      questionEl.textContent = "";
+      optionsEl.innerHTML = "";
+      if(score === quizData.length){
+        resultEl.textContent = "Amazing! You know me perfectly 💖";
+      } else {
+        resultEl.textContent = `You got ${score} out of ${quizData.length}. Let’s get to know each other more! ❤️`;
+      }
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>

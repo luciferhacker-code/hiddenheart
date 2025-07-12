@@ -1,0 +1,43 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #fff0f5;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+nav {
+  background: #ffccda;
+  padding: 10px;
+}
+nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #222;
+}
+.hero, h1 {
+  margin-top: 40px;
+}
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+.photo-box, .video-box {
+  max-width: 300px;
+}
+.photo-box img, .video-box video {
+  width: 100%;
+  border-radius: 10px;
+}
+.about-list {
+  text-align: left;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.gift-area img {
+  width: 100px;
+  margin: 10px;
+  cursor: pointer;
+}
